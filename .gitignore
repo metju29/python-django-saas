@@ -1,3 +1,10 @@
+# Ignore vender static files
+src/staticfiles/vendors
+
+# Ignore local static files root
+# or local cdn
+local-cdn/
+
 .DS_Store
 venv/
 
