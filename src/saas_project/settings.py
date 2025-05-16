@@ -71,6 +71,14 @@ INSTALLED_APPS = [
     # My apps
     'commando',
     'visits',
+
+    # Third-party-apps
+    "allauth_ui",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    "widget_tweaks",
+    "slippers",
 ]
 
 MIDDLEWARE = [
@@ -81,6 +89,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -147,6 +156,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Django Allauth config
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGIN_METHODS = {"username", "email"}
+ACCOUNT_SIGNUP_FIELDS = ["username*", "email*", "password1*", "password2*"]
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[SAAS-PROJECT] "
+
+AUTHENTICATION_BACKENDS = [
+   # ...
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # ...
+]
+
+SOCIALACCOUNT_PROVIDERS = {}
+
+ALLAUTH_UI_THEME = "light"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

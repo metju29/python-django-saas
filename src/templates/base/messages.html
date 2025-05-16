@@ -1,0 +1,19 @@
+<style>
+    .alert {
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        background-color: #007bff; /* Niebieskie tło */
+        color: #ffffff; /* Biały tekst */
+    }
+</style>
+
+{% if messages %}
+    {% for message in messages %}
+        <div role="alert"
+            class="text-sm md:text-base alert alert-{{ message.tags }}">
+            <span><strong>{{ message }}</strong></span>
+        </div>
+    {% endfor %}
+{% endif %}
