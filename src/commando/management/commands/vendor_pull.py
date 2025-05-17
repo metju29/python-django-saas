@@ -12,6 +12,16 @@ VENDOR_STATICFILES= {
     "flowbite.min.js.map": "https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js.map"
 }
 
+CUSTOM_CSS = """
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    background-color: #007bff;
+    color: #ffffff;
+}
+"""
 
 class Command(BaseCommand):
 
@@ -27,6 +37,19 @@ class Command(BaseCommand):
                 self.stdout.write(
                     self.style.ERROR(f'Failed to download {url}')
                 )
+
+        # Tworzenie custom.css
+        try:
+            with open(STATICFILES_VENDOR_DIR / 'custom.css', 'w') as f:
+                f.write(CUSTOM_CSS.strip())
+            self.stdout.write(
+                self.style.SUCCESS('Successfully created custom.css')
+            )
+        except Exception as e:
+            self.stdout.write(
+                self.style.ERROR(f'Failed to create custom.css: {str(e)}')
+            )
+
         if set(completed_urls) == set(VENDOR_STATICFILES.values()):
             self.stdout.write(
                 self.style.SUCCESS('Successfully updated all vendor static files.')
