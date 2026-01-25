@@ -53,4 +53,4 @@ def pw_protected_view(request, *args, **kwargs):
 
 @staff_member_required(login_url=LOGIN_URL)
 def staff_only_view(request, *args, **kwargs):
-    return render(request, "protected/staf-only.html")    
+    return render(request, "protected/staf-only.html")

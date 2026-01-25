@@ -70,6 +70,7 @@ INSTALLED_APPS = [
 
     # My apps
     'commando',
+    'profiles',
     'visits',
 
     # Third-party-apps
